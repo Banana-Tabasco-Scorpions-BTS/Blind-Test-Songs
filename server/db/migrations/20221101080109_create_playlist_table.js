@@ -4,7 +4,7 @@
  */
 exports.up = function(knex) {
   return knex.schema.createTable('playlist_data', table => {
-    table.increments('id');
+    table.increments('id').primary();
     table.string('song', 255)
         .notNullable();
     table.string('artist', 255);
