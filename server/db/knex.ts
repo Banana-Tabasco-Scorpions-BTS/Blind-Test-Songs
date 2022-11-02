@@ -1,6 +1,13 @@
-import knex from 'knex';
-import config from '../knexfile';
+// import { config } from '../knexfile'
+const config = require('../knexfile');
+import knex, { Knex } from 'knex';
+// import ProcessEnv from '../environment';
 
-// This may change once we deploy the app.
-exports.knex = knex(process.env.PORT ? config.production : config.development);
-// export default knex(process.env.PORT ? config.production : config.development)
+const db : Knex = process.env.PORT ? knex(config.production) : knex(config.development);
+
+export default db;
+// export default () => {
+//     return knex(process.env.PORT ? config.production : config.development);
+// }
+
+// export const db = knex(process.env.PORT ? config.production : config.development);

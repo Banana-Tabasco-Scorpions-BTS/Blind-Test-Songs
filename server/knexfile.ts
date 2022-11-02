@@ -1,17 +1,20 @@
+require('ts-node/register');
 require('dotenv').config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 module.exports = {
     
     development: {
         client: 'pg',
-        connection: {
-            host: process.env.DB_HOST,
-            port: process.env.DB_PORT,
-            database: process.env.DB_NAME,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-
-        },
+        connection: process.env.DB_URL_LOCAL,
+        // {
+        //     // host: process.env.DB_HOST,
+        //     // port: process.env.DB_PORT,
+        //     // database: process.env.DB_NAME,
+        //     // user: process.env.DB_USER,
+        //     // password: process.env.DB_PASSWORD,  
+        // },
         searchPath: 'public',
         pool: {
             min: 2,
