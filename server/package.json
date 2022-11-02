@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon dist/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon dist/index.js\"",
-    "build": "npm install && npm run tsc && npm run migrate && npm run seed",
+    "build": "npm install && tsc && npm run migrate && npm run seed",
     "make:migration": "knex migrate:make",
     "migrate": "knex migrate:latest",
     "make:seed": "knex seed:make",
@@ -17,7 +17,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "knex": "^2.3.0"
+    "knex": "^2.3.0",
+    "typescript": "^4.8.4"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -28,8 +29,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "nodemon": "^2.0.20",
-    "pg": "^8.8.0",
-    "typescript": "^4.8.4"
+    "pg": "^8.8.0"
   },
   "optionalDependencies": {
     "fsevents": "^2.1.2"
