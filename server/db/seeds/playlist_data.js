@@ -24,8 +24,6 @@ exports.seed = async function(knex) {
   }
   const playlistData = await axios(config)
   
-  // console.log(playlistData.data.items)
-
   for(let i = 0; i < playlistData.data.items.length; i++) {
     let individualTrack = playlistData.data.items[i].track;
     let songName = individualTrack.name;
@@ -38,28 +36,4 @@ exports.seed = async function(knex) {
     ]);
 
   }
-
-
-  // const playlistDataParsed = await playlistData.json();
-  // console.log(playlistDataParsed)
-  //     .then(pokemonData => pokemonData.data.results.map(item => item.url))
-  //     .then(pokemonUrl => Promise.all(pokemonUrl.map(url => axios.get(url))))
-  //     .then(completeResponse => completeResponse.map(pokemonWithAttr => pokemonWithAttr.data).filter(pokemon => pokemon.weight < weight ))
-  // };
-
-  //   const playlistAllData = await fetch("https://api.spotify.com/v1/playlists/37i9dQZF1DXb57FjYWz00c/tracks", {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json',
-  //       'Authorization': 'Bearer BQCmW9gk99P9SxDTZOgB10dQoAq3sjXpAs1kQ2pXUfYDZt5J1GfInOO4QMmDIEJXhW9QdKTCTUlC3wVIhmeLAU-gW6HMpEnFdIXT7-Elrybg7EjUNUAZeWPiMRtqJYbCKZJvXtU74zP24Wf2aMKxiQ7kSTSCPv2GUuG2CD7ak51uBug'
-  //     }});
-  //   const playlistAllDataParsed = await playlistAllData.json();
-  //   console.log(playlistAllDataParsed);
-
-  // } catch (error) {
-  //   console.error(error);
-  // };
-
-
-  // Deletes ALL existing entries
 };
