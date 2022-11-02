@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon dist/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon dist/index.js\"",
-    "build": "tsc && npm run migrate && npm run seed",
+    "build": "npm install && tsc && npm run migrate && npm run seed",
     "make:migration": "knex migrate:make",
     "migrate": "knex migrate:latest",
     "make:seed": "knex seed:make",
