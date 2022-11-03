@@ -1,9 +1,10 @@
+import { Knex } from "knex";
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-    return knex.schema.createTable('results', table => {
+    return knex.schema.createTable('games', table => {
         table
             .increments("id")
             .primary();
@@ -15,28 +16,25 @@ exports.up = function(knex) {
             .inTable('users')
             .onDelete('cascade');
         table
-            .integer('score')
+            .integer('round')
             .notNullable();
         table
-            .integer('max_score')
+            .integer('max_round')
             .notNullable();
         table
-            .timestamp('end_game')
+            .timestamp('game_start')
             .defaultTo(knex.fn.now())
             .notNullable();
     })
 };
 
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
 exports.down = async function(knex) {
     await knex.schema
-        .hasTable('results')
-        .then(async function(exists) {
-            if (exists) {
-                return knex.schema.dropTable('results');
-            };
-        });
-};
+    .hasTable('games')
+    .then(async function(exists) {
+        if (exists) {
+            return knex.schema.dropTable('games');
+        };
+    });
+}
+
