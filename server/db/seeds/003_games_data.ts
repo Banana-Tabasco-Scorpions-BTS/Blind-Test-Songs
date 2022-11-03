@@ -6,6 +6,12 @@ export async function seed(knex: Knex): Promise<void> {
 
     // Inserts seed entries
     await knex("games").insert([
-        { users_id: 3, round: 5, max_round: 5 },
+        {
+            user_id: 3, 
+            chosen_songs: JSON.stringify([20, 50, 10, 24, 76]),
+            round: 5,
+            max_round: 5,
+            game_start: Date.now(), 
+        },
     ]);
 };

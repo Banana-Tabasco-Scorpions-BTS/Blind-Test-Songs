@@ -11,7 +11,8 @@
     "migrate": "knex migrate:latest",
     "make:seed": "knex seed:make",
     "seed": "knex seed:run",
-    "rollback": "knex migrate:rollback -all"
+    "rollback": "npx knex migrate:rollback",
+    "reset-database": "npm run rollback && npm run migrate && npm run seed" 
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "knex": "^2.3.0",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.38",
     "pg": "^8.8.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"

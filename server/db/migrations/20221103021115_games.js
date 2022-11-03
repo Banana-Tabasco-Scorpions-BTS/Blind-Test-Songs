@@ -10,11 +10,14 @@ exports.up = function(knex) {
             .primary();
         table
         // /!\ Check if reference works when populating data
-            .integer('users_id')
+            .integer('user_id')
             .notNullable()
             .references('id')
             .inTable('users')
             .onDelete('cascade');
+        table
+            .json('chosen_songs')
+            .notNullable();
         table
             .integer('round')
             .notNullable();
@@ -22,9 +25,9 @@ exports.up = function(knex) {
             .integer('max_round')
             .notNullable();
         table
-            .timestamp('game_start')
-            .defaultTo(knex.fn.now())
-            .notNullable();
+            .bigInteger('game_start')
+            // .defaultTo(knex.fn.now())
+            // .notNullable();
     })
 };
 
