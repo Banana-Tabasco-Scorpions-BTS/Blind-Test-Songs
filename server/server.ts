@@ -3,8 +3,7 @@ import cors from 'cors';
 
 import exampleEndpoint from './routes/example';
 import newGame from './routes/newgame.controller';
-import guess from './routes/guess';
-import play from './routes/play.controller';
+import guess from './routes/guess.controller';
 
 const setupServer : Function = () => {
     const app: Express = express();
@@ -13,7 +12,6 @@ const setupServer : Function = () => {
     app.use(express.json());
     app.use('/example', exampleEndpoint);
     app.use('/guess', guess)
-    app.use('/play', play)
     app.use('/newgame', newGame)
 
     return app;

@@ -12,7 +12,7 @@ interface Track {
 module.exports = {
 
     sanitiseUserID(userID : string) {
-        const lowercaseID = userID.toLocaleLowerCase();
+        const lowercaseID = userID.toLowerCase();
         const firstLetter = lowercaseID.charAt(0).toUpperCase();
         const remainingLetters = lowercaseID.slice(1);
 

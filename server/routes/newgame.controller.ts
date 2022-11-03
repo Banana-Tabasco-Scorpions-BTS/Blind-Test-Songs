@@ -4,10 +4,8 @@ const newGame = require('./newgame.model');
 const { 
     sanitiseUserID,
     getUserID, 
-    getTracksID, 
-    // getGameID,
+    getTracksID,
     createGameInstance,
-    getSongInitialRound
     } = newGame
 
 const router = express.Router();
