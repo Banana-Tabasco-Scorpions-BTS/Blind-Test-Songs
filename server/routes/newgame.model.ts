@@ -1,3 +1,4 @@
+import { json } from 'stream/consumers';
 import db from '../db/knex';
 
 interface Track {
@@ -36,10 +37,11 @@ module.exports = {
             .then(arrTrackID => arrTrackID.map(objTrackID => objTrackID.id))
     },
 
-    async createGameInstance(user : string, chosen_songs : Array, round : number, maxRound: number, timestamp : number) : Promise<string> {
+    async createGameInstance(user : string, chosen_songs : Array<number>, round : number, maxRound: number, timestamp : number) : Promise<string> {
         return await db('games')
             .insert({
                 user_id: user,
+                chosen_songs: chosen_songs,
                 round: round,
                 max_round: maxRound,
                 game_start: timestamp,
@@ -47,6 +49,14 @@ module.exports = {
             .returning('id')
             .then(gameID => gameID[0]['id']);
     },
+
+    // async getSongInitialRound(gameID : number) {
+    //     return db('games')
+    //         .select('chosen_songs')
+    //         .where({id: gameID})
+    //         .first()
+    //         .then(objSongs => objSongs['chosen_songs'][0])
+    // }
 
     // async getGameID(timestamp : number) {
     //     const gameID = await db

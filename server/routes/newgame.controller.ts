@@ -6,27 +6,25 @@ const {
     getUserID, 
     getTracksID, 
     // getGameID,
-    createGameInstance } = newGame
+    createGameInstance,
+    getSongInitialRound
+    } = newGame
 
 const router = express.Router();
 
 router.get('/', async (req: Request, res: Response) => {
-    // When user submits their username, fetch username from database
-    const userID = await getUserID(sanitiseUserID('rEi'))
+    // replace reqName with username input from request
+    const reqName = 'rEi'
+    const userID = await getUserID(sanitiseUserID(reqName))
+    
     const timestamp = Date.now();
-
     const randomTrackID = await getTracksID(5);
+    const randomTrackIDJSON = JSON.stringify(randomTrackID);
 
-    
-    // const gameID = await createGameInstance(userID, 1, 5, timestamp)
+    const gameID = String(await createGameInstance(userID, randomTrackIDJSON, 1, 5, timestamp));
+    const songInitialRound = randomTrackID[0];
 
-    // const test = await getGameID(timestamp)
-
-    // console.log(gameID)
-    // console.log(test)
-    
-    // res.status(200).send(String(gameID));
-    res.send('hello')
+    res.status(200).send({ gameID: gameID, songURL: songInitialRound });
 })
 
 export default router;
