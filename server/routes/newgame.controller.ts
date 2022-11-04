@@ -13,8 +13,8 @@ const {
 const router = express.Router();
 
 router.get('/', async (req: Request, res: Response) => {
-    // replace reqName with username input from request
-    const reqName = 'rEi'
+
+    const reqName = req.body.username
     const userID = await getUserID(sanitiseUserID(reqName))
     
     const timestamp = Date.now();
