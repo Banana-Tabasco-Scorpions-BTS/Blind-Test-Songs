@@ -28,7 +28,16 @@ module.exports = {
         return objUserID.id
     },
 
-    getTracksID(limit = 5) {
+    async getTrackURL(trackID : number) {
+        const trackURL = await db
+            .select('url')
+            .from<Track>('playlist_data')
+            .where({id: trackID})
+            .first()
+        return trackURL.url
+    },
+
+    getRandomTracksID(limit = 5) {
         return db
             .select('id')
             .from<Track>('playlist_data')
