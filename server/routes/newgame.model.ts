@@ -59,6 +59,16 @@ module.exports = {
             .then(gameID => gameID[0]['id']);
     },
 
+    insertResultRow(gameID : number, userID : number, score : number, maxScore : number) {
+        return db('results')
+            .insert({
+                game_id: gameID,
+                user_id: userID,
+                score: score,
+                max_score: maxScore,
+            })
+    }
+
     // async getSongInitialRound(gameID : number) {
     //     return db('games')
     //         .select('chosen_songs')

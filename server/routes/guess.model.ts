@@ -2,14 +2,6 @@ import db from '../db/knex';
 
 module.exports = {
 
-    async getSpecificSong(id : number) {
-        return await db('playlist_data')
-            .select('song')
-            .where({id : id})
-            .first()
-            .then(objSong => objSong.song)
-    },
-
     sanitiseInput(input : string) {
         return input.toLowerCase();
     },
@@ -21,7 +13,6 @@ module.exports = {
         }
         
         const regexParen = /\(([^)]+)\)/;
-        
         if (regexParen.test(answer)) {
             const arr = answer.split(regexParen)
             const answerWithParen = arr[0] + arr[1]
