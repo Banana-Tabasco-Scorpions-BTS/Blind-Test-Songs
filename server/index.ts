@@ -10,7 +10,7 @@ let server : Express = setupServer();
 (async () => {
     try {
         server.listen(PORT, () => {
-            console.log(process.env)
+            // console.log(process.env)
             console.log(`[server]: Server is running at http://localhost:${PORT}`);
         });
     }
