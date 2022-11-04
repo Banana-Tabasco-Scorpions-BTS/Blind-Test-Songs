@@ -12,6 +12,10 @@ module.exports = {
             .then(objSong => objSong.song)
     },
 
+    async getCurrentRound() {
+        return 
+    },
+
     sanitiseInput(string : string) {
         return string.toLowerCase();
     },
