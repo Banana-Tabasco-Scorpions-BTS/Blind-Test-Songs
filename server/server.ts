@@ -4,8 +4,9 @@ import cors from 'cors';
 import exampleEndpoint from './routes/example';
 import newGame from './routes/newgame.controller';
 import guess from './routes/guess.controller';
-import nextRound from './routes/nextround.controller';
 import timeout from './routes/timeout.controller';
+import nextRound from './routes/nextround.controller';
+import result from './routes/result.controller';
 
 const setupServer : Function = () => {
     const app: Express = express();
@@ -18,6 +19,7 @@ const setupServer : Function = () => {
     app.use('/guess', guess);
     app.use('/timeout', timeout);
     app.use('/nextround', nextRound);
+    app.use('/result', result)
 
     return app;
 }

@@ -8,7 +8,6 @@ const router = express.Router();
 const { 
     getCurrentGame,
     getTrack,
-    getTrackWithGameID,
     incrementRound,
     incrementScore
 } = globalModel
