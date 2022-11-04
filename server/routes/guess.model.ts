@@ -1,5 +1,3 @@
-// import { query } from 'express';
-// import knex, { Knex } from 'knex';
 import db from '../db/knex';
 
 module.exports = {
@@ -12,30 +10,25 @@ module.exports = {
             .then(objSong => objSong.song)
     },
 
-    async getCurrentRound() {
-        return 
-    },
-
-    sanitiseInput(string : string) {
-        return string.toLowerCase();
+    sanitiseInput(input : string) {
+        return input.toLowerCase();
     },
     
-    sanitiseAnswer(string : string) {
+    sanitiseAnswer(answer : string) {
         const regexDash = new RegExp(" - ");
-        if (regexDash.test(string)) {
-            string = string.split(" - ")[0]
+        if (regexDash.test(answer)) {
+            answer = answer.split(" - ")[0]
         }
         
         const regexParen = /\(([^)]+)\)/;
         
-        if (regexParen.test(string)) {
-            const arr = string.split(regexParen)
-            const stringWithParen = arr[0] + arr[1]
-            const stringWithoutParen = arr[0]
-            return [string.toLowerCase(), stringWithoutParen.toLowerCase().trim(), stringWithParen.toLowerCase()];
+        if (regexParen.test(answer)) {
+            const arr = answer.split(regexParen)
+            const answerWithParen = arr[0] + arr[1]
+            const answerWithoutParen = arr[0]
+            return [answer.toLowerCase(), answerWithoutParen.toLowerCase().trim(), answerWithParen.toLowerCase()];
         }
-        // console.log(matches)
         
-        return [string.toLowerCase()];
+        return [answer.toLowerCase()];
     },
 }
