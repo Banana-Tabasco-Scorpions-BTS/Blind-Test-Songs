@@ -4,18 +4,26 @@ const globalModel = require('./global.model');
 
 const router = express.Router();
 
-const { 
+const {
     getTrackWithGameID,
     getCurrentGame,
     incrementRound
 } = globalModel
 
 router.post('/', async (req: Request, res: Response) => {
-
     const clientGameID = req.body.gameID;
-    const currentTrack = await getTrackWithGameID(clientGameID)
+    if (req.body.gameID == undefined) {
+        return res.status(400).send({
+            error: "Expected a request body containing: { gameID: '<your_game_id_num>' }"
+        })
+    };
 
     const currentGame = await getCurrentGame(clientGameID);
+    if (!currentGame) {
+        return res.status(404).send({ error: 'Game not found. We searched real hard... promise.' })
+    };
+
+    const currentTrack = await getTrackWithGameID(clientGameID)
 
     if (currentGame.round < currentGame["max_round"]) {
         await incrementRound(currentGame.id, currentGame.round);

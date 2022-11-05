@@ -30,7 +30,7 @@ router.post('/', async (req: Request, res: Response) => {
     const randomTrackID = await getRandomTracksID(5);
     const randomTrackIDJSON = JSON.stringify(randomTrackID);
 
-    const gameID = String(await createGameInstance(userID, randomTrackIDJSON, 1, 5, timestamp));
+    const gameID = String(await createGameInstance(userID, randomTrackIDJSON, 0, 5, timestamp));
     const songInitialRound = await getTrackURL(randomTrackID[0]);
 
     await insertResultRow(gameID, userID, 0, 5)
