@@ -9,7 +9,8 @@ const {
     getCurrentGame,
     getTrack,
     incrementRound,
-    incrementScore
+    incrementScore,
+    getResult
 } = globalModel
 
 const {
@@ -18,10 +19,22 @@ const {
 } = guessModel
 
 router.post('/', async (req: Request, res: Response) => {
+
     const clientGameID = req.body.gameID;
     const clientGuess = req.body.guess
 
+    if (clientGameID === undefined || clientGuess === undefined) {
+        return res.status(400).send({
+            error: "Expected a request body containing: { gameID: '<your_game_id_num>', guess: '<your_guess_str>' }"
+        })
+    };
+
     const currentGame = await getCurrentGame(clientGameID);
+
+    if (!currentGame) {
+        return res.status(404).send({error: 'Game not found. We searched real hard... promise.'})
+    };
+
     const songList = currentGame["chosen_songs"];
     const currentRoundTrackID = songList[currentGame.round-1];
     
@@ -33,15 +46,15 @@ router.post('/', async (req: Request, res: Response) => {
     const guessSanitised = sanitiseInput(clientGuess)
        
     console.log("guess: " + clientGuess)
-    console.log("possible answers: " + answerSanitised)
+    console.log("possible answers: " + answerSanitised)    
 
     for (let i = 0; i < answerSanitised.length; i ++) {
         if (answerSanitised[i] === guessSanitised) {
-            await incrementScore(currentGame.id)
+            const newScore = await incrementScore(currentGame.id)
             if (currentGame.round < currentGame["max_round"]) {
                 await incrementRound(currentGame.id, currentGame.round);
             }
-            
+           
             console.log("it's a match!")
             return res.send({
                 "gameID": clientGameID,
@@ -52,7 +65,7 @@ router.post('/', async (req: Request, res: Response) => {
                     "artist": currentTrack.artist,
                     "album": currentTrack.album
                 },
-                "currentScore": 1,
+                "currentScore": newScore[0].score,
             })
         }
     } 

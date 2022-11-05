@@ -14,7 +14,7 @@ const {
 
 const router = express.Router();
 
-router.get('/', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
 
     const clientGameID = req.body.gameID;
     const currentGame = await getCurrentGame(clientGameID)

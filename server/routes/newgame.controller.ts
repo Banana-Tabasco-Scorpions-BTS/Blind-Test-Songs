@@ -13,13 +13,17 @@ const {
 const router = express.Router();
 
 router.post('/', async (req: Request, res: Response) => {
-    console.log(req)
     const reqName = req.body.username
+
+    if (reqName === undefined) {
+        return res.status(400).send({error: 'Expected a request body containing: { "username": "<username>" }'})
+    };
+    
     const userObj = await getUserID(sanitiseUserID(reqName));
-    console.log(userObj)
+   
     if (!userObj) {
-            return res.status(404).send("Account not found")
-        }
+        return res.status(404).send({error: 'Account not found. This is a CC28 members only club. Sorry not sorry :).'})
+    };
         
         const userID = userObj.id
     const timestamp = Date.now();
