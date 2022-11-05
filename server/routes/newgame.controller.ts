@@ -1,22 +1,27 @@
 import express, { Request, Response } from 'express';
 
 const newGame = require('./newgame.model');
-const { 
+const {
     sanitiseUserID,
-    getUserID, 
+    getUserID,
     getRandomTracksID,
     createGameInstance,
     getTrackURL,
     insertResultRow
-    } = newGame
+} = newGame
 
 const router = express.Router();
 
 router.get('/', async (req: Request, res: Response) => {
 
     const reqName = req.body.username
-    const userID = await getUserID(sanitiseUserID(reqName))
-    
+    const userObj = await getUserID(sanitiseUserID(reqName));
+    console.log(userObj)
+    if (!userObj) {
+            return res.status(404).send("Account not found")
+        }
+        
+        const userID = userObj.id
     const timestamp = Date.now();
     const randomTrackID = await getRandomTracksID(5);
     const randomTrackIDJSON = JSON.stringify(randomTrackID);
@@ -25,8 +30,8 @@ router.get('/', async (req: Request, res: Response) => {
     const songInitialRound = await getTrackURL(randomTrackID[0]);
 
     await insertResultRow(gameID, userID, 0, 5)
-    
-    res.status(200).send({ gameID: gameID, songURL: songInitialRound });
+
+    return res.status(200).send({ gameID: gameID, songURL: songInitialRound });
 })
 
 export default router;

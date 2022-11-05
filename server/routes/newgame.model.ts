@@ -25,7 +25,7 @@ module.exports = {
             .from('users')
             .where({username: userID})
             .first()
-        return objUserID.id
+        return objUserID
     },
 
     async getTrackURL(trackID : number) {
