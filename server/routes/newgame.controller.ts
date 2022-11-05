@@ -12,8 +12,8 @@ const {
 
 const router = express.Router();
 
-router.get('/', async (req: Request, res: Response) => {
-
+router.post('/', async (req: Request, res: Response) => {
+    console.log(req)
     const reqName = req.body.username
     const userObj = await getUserID(sanitiseUserID(reqName));
     console.log(userObj)
