@@ -30,7 +30,7 @@ router.post('/', async (req: Request, res: Response) => {
 
         return res
             .status(200)
-            .send({ "gameID": clientGameID, "songURL": nextTrackURL })
+            .send({ "gameID": clientGameID, "songURL": nextTrackURL, "round": currentGame.round })
     } else {
         return res
             .status(200)

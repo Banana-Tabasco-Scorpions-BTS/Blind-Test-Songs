@@ -33,7 +33,14 @@ function incrementScore(gameID: number) {
         .where({ game_id: gameID })
         .increment('score', 1)
         .returning('score')
-}
+};
+
+function getCurrentScore(gameID: number) {
+    return db('results')
+        .select('score')
+        .where({ game_id: gameID })
+        .first();
+};
 
 module.exports = {
     getCurrentGame,
@@ -41,4 +48,5 @@ module.exports = {
     getTrackWithGameID,
     incrementRound,
     incrementScore,
+    getCurrentScore
 }

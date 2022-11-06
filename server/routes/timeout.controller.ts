@@ -7,7 +7,8 @@ const router = express.Router();
 const {
     getTrackWithGameID,
     getCurrentGame,
-    incrementRound
+    incrementRound,
+    getCurrentScore
 } = globalModel
 
 router.post('/', async (req: Request, res: Response) => {
@@ -29,15 +30,20 @@ router.post('/', async (req: Request, res: Response) => {
         await incrementRound(currentGame.id, currentGame.round);
     }
 
-    return res.send({
-        "gameID": clientGameID,
-        "roundSuccess": false,
-        "result": {
-            "song": currentTrack.song,
-            "artist": currentTrack.artist,
-            "album": currentTrack.album
-        }
-    })
+    const currentScore = await getCurrentScore(clientGameID)
+
+    return res
+        .status(200)
+        .send({
+            "gameID": clientGameID,
+            "roundSuccess": false,
+            "result": {
+                "song": currentTrack.song,
+                "artist": currentTrack.artist,
+                "album": currentTrack.album
+            },
+            "currentScore": currentScore.score,
+        })
 })
 
 export default router;
