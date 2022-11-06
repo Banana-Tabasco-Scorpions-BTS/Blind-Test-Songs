@@ -69,7 +69,11 @@ router.post('/', async (req: Request, res: Response) => {
         }
     }
 
-    return res.send({ "gameID": clientGameID, "guessMatch": false });
+    return res.send({ "gameID": clientGameID, "guessMatch": false, "result": {
+        "song": currentTrack.song,
+        "artist": currentTrack.artist,
+        "album": currentTrack.album
+    }, });
 
 })
 
