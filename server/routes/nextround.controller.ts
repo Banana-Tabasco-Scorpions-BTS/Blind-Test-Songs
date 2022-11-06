@@ -19,6 +19,7 @@ router.post('/', async (req: Request, res: Response) => {
     };
 
     const currentGame = await getCurrentGame(clientGameID)
+    const nextRound = currentGame.round + 1
 
     if (!currentGame) {
         return res.status(404).send({ error: 'Game not found. We searched real hard... promise.' })
@@ -30,7 +31,7 @@ router.post('/', async (req: Request, res: Response) => {
 
         return res
             .status(200)
-            .send({ "gameID": clientGameID, "songURL": nextTrackURL, "round": currentGame.round })
+            .send({ "gameID": clientGameID, "songURL": nextTrackURL, "round": nextRound })
     } else {
         return res
             .status(200)
