@@ -7,32 +7,32 @@ interface Track {
     artist: string;
     album: string;
     url: string;
-  }
+}
 
 module.exports = {
 
-    sanitiseUserID(userID : string) {
+    sanitiseUserID(userID: string) {
         const lowercaseID = userID.toLowerCase();
         const firstLetter = lowercaseID.charAt(0).toUpperCase();
         const remainingLetters = lowercaseID.slice(1);
 
-        return firstLetter + remainingLetters        
+        return firstLetter + remainingLetters
     },
 
-    async getUserID(userID : string) : Promise<string> {
+    async getUserID(userID: string): Promise<string> {
         const objUserID = await db
             .select('id')
             .from('users')
-            .where({username: userID})
+            .where({ username: userID })
             .first()
-        return objUserID.id
+        return objUserID
     },
 
-    async getTrackURL(trackID : number) {
+    async getTrackURL(trackID: number) {
         const trackURL = await db
             .select('url')
             .from<Track>('playlist_data')
-            .where({id: trackID})
+            .where({ id: trackID })
             .first()
         return trackURL.url
     },
@@ -46,7 +46,7 @@ module.exports = {
             .then(arrTrackID => arrTrackID.map(objTrackID => objTrackID.id))
     },
 
-    async createGameInstance(user : string, chosen_songs : Array<number>, round : number, maxRound: number, timestamp : number) : Promise<string> {
+    async createGameInstance(user: string, chosen_songs: Array<number>, round: number, maxRound: number, timestamp: number): Promise<string> {
         return await db('games')
             .insert({
                 user_id: user,
@@ -59,7 +59,7 @@ module.exports = {
             .then(gameID => gameID[0]['id']);
     },
 
-    insertResultRow(gameID : number, userID : number, score : number, maxScore : number) {
+    insertResultRow(gameID: number, userID: number, score: number, maxScore: number) {
         return db('results')
             .insert({
                 game_id: gameID,

@@ -12,7 +12,7 @@ exports.seed = async function(knex) {
   await knex('playlist_data').del()
   
   let config = {
-    url: `/v1/playlists/37i9dQZF1DXb57FjYWz00c/tracks`,
+    url: `/v1/playlists/3QGJEPt9z4XXWqh2Q4MXIb/tracks`, // 37i9dQZF1DXb57FjYWz00c
     baseURL: 'https://api.spotify.com',
     method: 'get',
     headers: {
