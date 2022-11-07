@@ -1,6 +1,17 @@
 # Blind-Test-Songs
 MVP of a musical quiz full-stack web application.
 
+
+## Presentation Slides
+https://docs.google.com/presentation/d/1HuZnRT1BALtizwdAFGZxOfTA7oE5G9QwyFVqnyASfVo/edit?usp=sharing
+
+## Notes
+https://github.com/Banana-Tabasco-Scorpions-BTS/React_Vanilla -- The client has been deployed from the main branch of this repository.
+https://github.com/Banana-Tabasco-Scorpions-BTS/Blind-Test-Songs/tree/server-logic-endpoints -- The server has been deployed from the 'server-logic-endpoints' branch. The client from this repo can be safely deleted.
+
+We suggest a full cleanup of the repositories into only 2 repos (1 client and 1 server) before starting to dig into the code itself.
+
+
 ## Installation
 
 Don't forget to run this first command to install dependencies:
