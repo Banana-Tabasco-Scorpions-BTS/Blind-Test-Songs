@@ -5,12 +5,11 @@ MVP of a musical quiz full-stack web application.
 https://docs.google.com/presentation/d/1HuZnRT1BALtizwdAFGZxOfTA7oE5G9QwyFVqnyASfVo/edit?usp=sharing
 
 ## Notes
+For the client, the latest code lives on [this repository](https://github.com/Banana-Tabasco-Scorpions-BTS/React_Vanilla).
 
-The client has been deployed from the main branch of [this repository](https://github.com/Banana-Tabasco-Scorpions-BTS/React_Vanilla).
+For the server, the latest code lives on [this repository](https://github.com/Banana-Tabasco-Scorpions-BTS/Blind-Test-Songs).
 
-The server has been deployed from the ['server-logic-endpoints' branch](https://github.com/Banana-Tabasco-Scorpions-BTS/Blind-Test-Songs/tree/server-logic-endpoints). The client from this repo can be safely deleted.
-
-We suggest a full cleanup of the project into only 2 repos (1 client and 1 server) before starting to dig into the code itself.
+We suggest a full cleanup of the project into only 2 repos (1 client and 1 server) before starting to dig into the code itself. All our branches can also be either parked to the side or deleted.
 
 ## Generating a Spotify API token
 the server .env file contains a Spotify API key, which you can generate from the [Spotify Dev website](https://developer.spotify.com/console/get-playlist-tracks/). This key expires after one hour, so for now what we have done is generate a new one each time we want to build the server (which includes resetting our database).
