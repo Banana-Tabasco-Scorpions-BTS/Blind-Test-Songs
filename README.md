@@ -1,6 +1,19 @@
 # Blind-Test-Songs
 MVP of a musical quiz full-stack web application.
 
+## Bugs
+- Server: Where there are multiple artists attributed on a song, the current database only saves one.
+- Client: Score tally client-side sometimes double/triple increments.
+- Client: Timer currently freezes everytime the player inputs a guess, making the total guess length longer than 25 seconds.
+
+## Roadmap: Features
+- Server: Have a self-refreshing API Token.
+- Server: Allow players to guess artists and albums as valid guesses.
+- Client: Allow players to log-in through spotify and choose their own playlists to play on. This feature is by far the hardest and would require a redesign of the database architecture and how songs are delivered to the player.
+- Client: Add a mute/volume control button during the game
+- Client: Re-implement Typescript.
+
+
 ## Presentation Slides
 https://docs.google.com/presentation/d/1HuZnRT1BALtizwdAFGZxOfTA7oE5G9QwyFVqnyASfVo/edit?usp=sharing
 
