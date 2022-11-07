@@ -5,7 +5,7 @@ MVP of a musical quiz full-stack web application.
 https://docs.google.com/presentation/d/1HuZnRT1BALtizwdAFGZxOfTA7oE5G9QwyFVqnyASfVo/edit?usp=sharing
 
 ## Notes
-For the client, the latest code lives on [this repository](https://github.com/Banana-Tabasco-Scorpions-BTS/React_Vanilla).
+For the client, the latest code lives on [this repository](https://github.com/Banana-Tabasco-Scorpions-BTS/Blind-Test-Songs-Client).
 
 For the server, the latest code lives on [this repository](https://github.com/Banana-Tabasco-Scorpions-BTS/Blind-Test-Songs).
 
