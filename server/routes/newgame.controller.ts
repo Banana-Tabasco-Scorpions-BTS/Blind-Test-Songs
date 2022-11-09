@@ -1,6 +1,6 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response } from "express";
 
-const newGame = require('./newgame.model');
+const newGame = require("./newgame.model");
 const {
     sanitiseUserID,
     getUserID,
@@ -35,12 +35,14 @@ router.post('/', async (req: Request, res: Response) => {
     const randomTrackID = await getRandomTracksID(5);
     const randomTrackIDJSON = JSON.stringify(randomTrackID);
 
-    const gameID = String(await createGameInstance(userID, randomTrackIDJSON, 0, 5, timestamp));
-    const songInitialRound = await getTrackURL(randomTrackID[0]);
+  const gameID = String(
+    await createGameInstance(userID, randomTrackIDJSON, 0, 5, timestamp)
+  );
+  const songInitialRound = await getTrackURL(randomTrackID[0]);
 
-    await insertResultRow(gameID, userID, 0, 5)
+  await insertResultRow(gameID, userID, 0, 5);
 
-    return res.status(200).send({ gameID: gameID, songURL: songInitialRound });
-})
+  return res.status(200).send({ gameID: gameID, songURL: songInitialRound });
+});
 
 export default router;
