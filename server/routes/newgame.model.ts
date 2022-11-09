@@ -1,5 +1,7 @@
+import knex from 'knex';
 import { json } from 'stream/consumers';
 import db from '../db/knex';
+import axios from "axios";
 
 interface Track {
     id: number;
@@ -35,6 +37,37 @@ module.exports = {
             .where({ id: trackID })
             .first()
         return trackURL.url
+    },
+
+    async updateDatabaseTracks(newPlaylist:any, token: string) {
+        // let playlist = await db
+            await knex('playlist_data').del()
+  
+            let config = {
+              url: `/v1/playlists/3QGJEPt9z4XXWqh2Q4MXIb/tracks`,
+              baseURL: 'https://api.spotify.com',
+              method: 'get',
+              headers: {
+                'User-agent': 'PostmanRuntime/7.29.2',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${ token }`
+              }
+            }
+            const playlistData = await axios(config)
+            
+            for(let i = 0; i < newPlaylist.length; i++) {
+              let individualTrack = playlistData.data.items[i].track;
+              let songName = individualTrack.name;
+              let artistName = individualTrack.artists[0].name;
+              let albumName = individualTrack.album.name;
+              let url = individualTrack['preview_url'];
+              
+              await knex('playlist_data').insert([
+                {song: songName, artist: artistName, album: albumName, url: url},
+              ]);
+          
+            }
     },
 
     getRandomTracksID(limit = 5) {
