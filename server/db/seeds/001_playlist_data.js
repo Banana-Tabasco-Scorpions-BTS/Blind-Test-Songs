@@ -26,7 +26,9 @@ exports.seed = async function (knex) {
   for (let i = 0; i < playlistData.data.items.length; i++) {
     let individualTrack = playlistData.data.items[i].track;
     let songName = individualTrack.name;
-    let artistName = individualTrack.artists[0].name;
+    let artistName = individualTrack.artists
+      .map((curr) => curr.name)
+      .join(", ");
     let albumName = individualTrack.album.name;
     let url = individualTrack["preview_url"];
 
